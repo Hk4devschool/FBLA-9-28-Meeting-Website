@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road to States | FBLA Middle School and High School Adviser PD</title>
+<style>
+:root{
+  --navy:#071b3a; --blue:#1769e0; --cyan:#19c3d1; --gold:#f5b841;
+  --ink:#172033; --muted:#64748b; --bg:#f4f7fb; --card:#fff;
+  --good:#16a34a; --warn:#d97706; --bad:#dc2626; --line:#dbe4f0;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+button{font:inherit}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(7,27,58,.96);color:#fff;border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px)}
+.nav{max-width:1180px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-weight:900;letter-spacing:.2px}.brand span{color:var(--cyan)}
+.navlinks{display:flex;gap:6px;flex-wrap:wrap}
+.navlinks button{border:0;background:transparent;color:#dbeafe;padding:8px 10px;border-radius:9px;cursor:pointer;font-weight:700;font-size:13px}
+.navlinks button:hover,.navlinks button.active{background:#173a70;color:#fff}
+.hero{background:linear-gradient(135deg,var(--navy),#0d3977 60%,#0e8190);color:white;padding:70px 20px 60px}
+.hero-inner{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.4fr .8fr;gap:35px;align-items:center}
+.eyebrow{display:inline-block;background:rgba(25,195,209,.18);border:1px solid rgba(25,195,209,.4);padding:7px 11px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.7px;text-transform:uppercase}
+h1{font-size:clamp(38px,6vw,68px);line-height:.98;margin:18px 0 18px;letter-spacing:-2px}
+.hero p{font-size:18px;color:#dbeafe;max-width:760px}
+.hero-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.hero-card .big{font-size:42px;font-weight:900;color:var(--gold)}
+.hero-card small{color:#cbd5e1}
+main{max-width:1180px;margin:auto;padding:30px 20px 70px}
+section{scroll-margin-top:80px;margin:26px 0 60px}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:900;color:var(--blue)}
+h2{font-size:34px;line-height:1.1;margin:5px 0}
+h3{margin:7px 0;font-size:20px}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 8px 25px rgba(31,52,82,.06)}
+.card:hover{transform:translateY(-2px);transition:.2s;box-shadow:0 12px 30px rgba(31,52,82,.1)}
+.icon{width:42px;height:42px;border-radius:12px;background:#e8f1ff;color:var(--blue);display:grid;place-items:center;font-size:20px;font-weight:900}
+.pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;background:#eef2ff;color:#334155;margin:3px}
+.callout{border-left:5px solid var(--cyan);background:#ecfeff;padding:16px 18px;border-radius:12px}
+.callout.gold{border-left-color:var(--gold);background:#fffbeb}
+.callout.red{border-left-color:var(--bad);background:#fef2f2}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.step{position:relative;background:white;border:1px solid var(--line);border-radius:16px;padding:16px;min-height:170px}
+.step .num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:white;display:grid;place-items:center;font-weight:900}
+.step strong{display:block;margin-top:10px}.step p{font-size:13px;color:var(--muted)}
+.checklist label{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #edf1f6;cursor:pointer}
+.checklist input{margin-top:4px;accent-color:var(--blue);transform:scale(1.15)}
+.progress{height:10px;background:#e5eaf2;border-radius:999px;overflow:hidden}.progress>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:.3s}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid var(--line);background:white;padding:9px 12px;border-radius:10px;font-weight:800;cursor:pointer}.tab.active{background:var(--navy);color:white}
+.panel{display:none}.panel.active{display:block}
+.quiz-q{font-weight:850;font-size:19px}.answers{display:grid;gap:9px;margin-top:14px}.answer{border:1px solid var(--line);background:white;border-radius:12px;padding:12px;text-align:left;cursor:pointer}.answer:hover{border-color:#8db6f5}.answer.correct{background:#ecfdf5;border-color:#86efac}.answer.wrong{background:#fef2f2;border-color:#fecaca}.feedback{font-weight:800;margin-top:12px;min-height:24px}
+input[type=text],input[type=number],select,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:white;color:var(--ink)}
+textarea{min-height:100px;resize:vertical}
+label.field{display:block;font-weight:800;font-size:13px;margin:12px 0 5px}
+.btn{border:0;background:var(--blue);color:white;border-radius:10px;padding:10px 14px;font-weight:850;cursor:pointer}.btn.secondary{background:#e9eef7;color:var(--navy)}.btn.gold{background:var(--gold);color:#172033}
+.btn:active{transform:translateY(1px)}
+.result{font-size:28px;font-weight:900;margin-top:10px}
+.budget-row{display:grid;grid-template-columns:1fr 150px;gap:10px;align-items:center;margin:9px 0}
+.money{font-weight:900;text-align:right}
+.meeting{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:start;margin:10px 0}.meeting input{font-weight:800}
+footer{background:var(--navy);color:#dbeafe;padding:30px 20px}.footer-inner{max-width:1180px;margin:auto}
+a{color:var(--blue);font-weight:700}
+.small{font-size:12px}.source-list{display:grid;gap:8px}
+@media(max-width:850px){.hero-inner,.grid,.grid2{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.navlinks{display:none}}
+@media(max-width:550px){.timeline{grid-template-columns:1fr}.hero{padding-top:45px}h2{font-size:28px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="nav">
+    <div class="brand">FBLA <span>ROAD TO STATES</span></div>
+    <div class="navlinks">
+      <button onclick="go('start')">Start</button>
+      <button onclick="go('roadmap')">Roadmap</button>
+      <button onclick="go('connect')">Systems</button>
+      <button onclick="go('prep')">Prepare</button>
+      <button onclick="go('funding')">Funding</button>
+      <button onclick="go('transportation')">Transportation</button>
+      <button onclick="go('meeting')">Meetings</button>
+      <button onclick="go('action')">Action Plan</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="start">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Middle School and High School Adviser Professional Development • September 28</span>
+      <h1>The Road to<br>FBLA States</h1>
+      <p>A student-perspective playbook for helping more middle school and high school members move from <b>“I joined FBLA”</b> to <b>“I’m ready to compete at States.”</b></p>
+      <p class="small">Designed as an interactive lesson + facilitator guide. Virginia-specific registration details are based on the latest publicly available Virginia FBLA guidance and should be rechecked when the 2026–27 SLC guide is released.</p>
+      <button class="btn gold" onclick="go('roadmap')">Start the journey →</button>
+    </div>
+    <div class="hero-card">
+      <div class="big">5 → 1</div>
+      <div><b>Recruit → Choose → Train → Register → Compete</b></div>
+      <p class="small">The goal isn't simply to get students to a conference. It's to build a repeatable chapter pipeline that makes competing feel normal.</p>
+    </div>
+  </div>
+</section>
+
+<main>
+<section>
+  <div class="section-head">
+    <div><div class="kicker">Facilitator snapshot</div><h2>What advisers should leave knowing</h2></div>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="icon">01</div><h3>Build the pipeline</h3><p>Use chapter meetings, mini-competitions, speakers and activities to create students who are curious enough to compete.</p></div>
+    <div class="card"><div class="icon">02</div><h3>Make States concrete</h3><p>Students need an event, a deadline, a preparation plan and an adult who believes they can get there.</p></div>
+    <div class="card"><div class="icon">03</div><h3>Remove admin friction</h3><p>Get membership, FBLA Connect data and Blue Panda registration right early so a technical issue never becomes a missed opportunity.</p></div>
+  </div>
+  <div class="callout gold" style="margin-top:16px"><b>Student POV:</b> “Don't tell me to prepare for States in March. Give me a reason to care in September.”</div>
+</section>
+
+<section id="roadmap">
+  <div class="section-head"><div><div class="kicker">Interactive roadmap</div><h2>The Road to States</h2></div></div>
+  <div class="timeline">
+    <div class="step"><div class="num">1</div><strong>Recruit & excite</strong><p>Show what FBLA actually feels like: competitions, speakers, field trips, leadership and recognition.</p></div>
+    <div class="step"><div class="num">2</div><strong>Explore events</strong><p>Let students sample events and match interests/strengths to the current Middle School and High School event lineup.</p></div>
+    <div class="step"><div class="num">3</div><strong>Train early</strong><p>Turn preparation into weekly reps: practice tests, presentation drills, research, feedback and mock judging.</p></div>
+    <div class="step"><div class="num">4</div><strong>Register correctly</strong><p>Confirm membership, select attendees, assign events, resolve issues and submit before the state deadline.</p></div>
+    <div class="step"><div class="num">5</div><strong>Compete & reflect</strong><p>Prepare logistics, celebrate effort, review ratings and turn the experience into next year's pipeline.</p></div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>Quick discussion: Where is your chapter leaking students?</h3>
+    <div class="grid2">
+      <div>
+        <label class="field">Choose the biggest bottleneck</label>
+        <select id="bottleneck">
+          <option>Students don't know what FBLA competition is</option>
+          <option>Students pick events but don't prepare</option>
+          <option>Students prepare but miss registration/admin steps</option>
+          <option>Students qualify but families can't fund travel</option>
+          <option>Students compete once and don't return</option>
+        </select>
+      </div>
+      <div>
+        <label class="field">One fix you can implement this month</label>
+        <input id="fix" type="text" placeholder="e.g., 15-minute event sampler at every meeting">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="section-head"><div><div class="kicker">Systems lab</div><h2>FBLA Connect → Blue Panda</h2></div></div>
+  <div class="callout"><b>Important:</b> The exact screens, conference name, fees and deadlines can change by year/state. Use the live 2026–27 Virginia FBLA instructions when released. The workflow below teaches the process without pretending a future deadline is already known.</div>
+  <div class="tabs" style="margin-top:18px">
+    <button class="tab active" onclick="tab('connectPanel',this)">FBLA Connect</button>
+    <button class="tab" onclick="tab('bluePanel',this)">Blue Panda</button>
+    <button class="tab" onclick="tab('issuesPanel',this)">Issues check</button>
+  </div>
+  <div id="connectPanel" class="panel active">
+    <div class="grid">
+      <div class="card"><div class="icon">A</div><h3>1. Membership first</h3><p>Make sure students who will participate beyond the local chapter are properly recorded as members and that required dues are handled.</p><span class="pill">FBLA Connect</span><span class="pill">Verify early</span></div>
+      <div class="card"><div class="icon">B</div><h3>2. Keep data clean</h3><p>Student names and active-member status matter because Blue Panda can pull member information from FBLA Connect.</p><span class="pill">Accuracy</span><span class="pill">Sync</span></div>
+      <div class="card"><div class="icon">C</div><h3>3. Don't wait for the deadline</h3><p>Give yourself time to fix membership, event or registration problems before the submission window closes.</p><span class="pill">Buffer</span><span class="pill">No surprises</span></div>
+    </div>
+  </div>
+  <div id="bluePanel" class="panel">
+    <div class="card">
+      <h3>Blue Panda registration workflow</h3>
+      <ol>
+        <li>Open the Virginia FBLA conference registration site and log in through the <b>FBLA Connect</b> option.</li>
+        <li>Select the correct Virginia FBLA State Leadership Conference registration.</li>
+        <li>Add attendees. For members, select the student from the available member list rather than manually creating a student.</li>
+        <li>Enter required information such as special needs and food restrictions, then save.</li>
+        <li>Open <b>Competitions</b> and assign the appropriate student(s) to each event. Double-check team composition.</li>
+        <li>Use the <b>Issues</b> area before submission. Resolve anything that blocks submission.</li>
+        <li>Submit by the current Virginia deadline. Save/print confirmation according to the current guide.</li>
+      </ol>
+      <div class="callout gold"><b>Adviser habit:</b> Have a second adult/student officer cross-check attendee names, events and team members before final submission.</div>
+    </div>
+  </div>
+  <div id="issuesPanel" class="panel">
+    <div class="grid">
+      <div class="card"><h3>🟢 Green</h3><p>Latest Virginia guidance describes this as zero issues — registration is clear to submit.</p></div>
+      <div class="card"><h3>🟠 Orange</h3><p>There is an issue to address. The latest Virginia guide says registration may still be submitted, but the issue should be fixed promptly.</p></div>
+      <div class="card"><h3>🔴 Red</h3><p>A blocking issue prevents submission. Stop and resolve it before assuming registration is complete.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="section-head"><div><div class="kicker">5-minute activity</div><h2>Blue Panda “Would you submit?”</h2></div></div>
+  <div class="card">
+    <div class="quiz-q" id="quizQ"></div>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="btn secondary" onclick="nextQuiz()">Next scenario</button>
+    <div class="small muted" id="quizScore" style="margin-top:10px"></div>
+  </div>
+</section>
+
+<section id="prep">
+  <div class="section-head"><div><div class="kicker">Competition coaching</div><h2>How to prepare students for States</h2></div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>The 4-layer prep model</h3>
+      <div class="checklist" id="prepList">
+        <label><input type="checkbox"> <span><b>Know the event.</b><br><span class="muted">Read the current year's official guidelines, topics, format, scoring/rating sheet and required materials.</span></span></label>
+        <label><input type="checkbox"> <span><b>Build the skill.</b><br><span class="muted">Use short, repeated practice rather than one giant study session.</span></span></label>
+        <label><input type="checkbox"> <span><b>Simulate the pressure.</b><br><span class="muted">Mock tests, timed presentations, practice judging and peer questions.</span></span></label>
+        <label><input type="checkbox"> <span><b>Review the feedback.</b><br><span class="muted">Use scores/rating sheets to identify one or two specific improvements.</span></span></label>
+      </div>
+      <div class="progress" style="margin-top:15px"><div id="prepProgress"></div></div>
+      <div class="small muted" id="prepPct">0% complete</div>
+    </div>
+    <div class="card">
+      <h3>Event selection: don't overcomplicate it</h3>
+      <p>Have students answer three questions:</p>
+      <ol>
+        <li><b>What am I naturally interested in?</b></li>
+        <li><b>What format fits me?</b> Test, presentation, team, project, etc.</li>
+        <li><b>What can I realistically practice every week?</b></li>
+      </ol>
+      <div class="callout">Use the <b>current 2026–27 Middle School and High School Competitive Events Guidelines</b> as the source of truth. FBLA states that current-year guidelines include event information and rating sheets.</div>
+      <p><a href="https://www.fbla.org/competitive-events/" target="_blank">Open 2026–27 Middle School & High School Competitive Events →</a></p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Practice menu: pick 1–2 per meeting</h3>
+    <div class="grid">
+      <div><span class="pill">⚡ 10-minute speed round</span><p class="small">Rapid-fire questions or event vocabulary.</p></div>
+      <div><span class="pill">🎤 60-second pitch</span><p class="small">Students explain an idea while peers score clarity.</p></div>
+      <div><span class="pill">🧑‍⚖️ Mini judging</span><p class="small">Peers use the actual rating sheet and give one glow + one grow.</p></div>
+      <div><span class="pill">⏱️ Timed test</span><p class="small">Build comfort with the testing environment and pacing.</p></div>
+      <div><span class="pill">🔄 Teach-back</span><p class="small">Students teach a concept to the group.</p></div>
+      <div><span class="pill">🎯 Weakness round</span><p class="small">Practice the lowest-scoring skill from the previous round.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">The 3 competition formats</h2>
+  <p class="section-subtitle">Middle School and High School events fit these three common formats. Knowing which one a student is entering changes how you train them.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>🎭 Roleplays</h3>
+      <p><strong>What it is:</strong> Students get a business scenario and a short prep window, then act it out in front of a judge.</p>
+      <ul>
+        <li>Practice with <strong>unfamiliar scenarios</strong> — not just the one they rehearsed.</li>
+        <li>Drill the opening: state the problem and your plan in the first 30 seconds.</li>
+        <li>Time-box prep and delivery so pacing feels natural under pressure.</li>
+        <li>Use peers as mock judges with the real rating sheet.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🎤 Presentations</h3>
+      <p><strong>What it is:</strong> Students prepare a talk, pitch or project and present it to judges, often with visuals.</p>
+      <ul>
+        <li>Build the deck <strong>early</strong>, then spend reps on delivery, not slides.</li>
+        <li>Practice Q&amp;A — judges probe beyond the prepared script.</li>
+        <li>Record a practice run and review one or two specific fixes.</li>
+        <li>Check the official guidelines for time limits, materials and judging criteria.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📝 Objective tests</h3>
+      <p><strong>What it is:</strong> A scored test of business knowledge — the format that rewards consistent study most.</p>
+      <ul>
+        <li>Take <strong>timed practice tests</strong> to build pacing and reduce test anxiety.</li>
+        <li>Review wrong answers and turn them into a short study list.</li>
+        <li>Use the current year's topic outline as the study map.</li>
+        <li>Schedule short, repeated study blocks rather than one cram session.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>Match the student to the format</h3>
+    <p>Comfortable speaking and thinking on their feet? Try a <strong>roleplay</strong>. Strong at building and delivering a polished message? A <strong>presentation</strong>. Best at memorizing and recalling facts under time pressure? An <strong>objective test</strong>. Let students sample all three early so they choose by strength, not by what a friend picked.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Tucker FBLA is here to help</h2>
+  <p class="section-subtitle">You don't have to figure this out alone. Tucker FBLA will send out a form to gather what each chapter needs — and if you'd rather reach out directly, you can email the address on the form to request help as well.</p>
+
+  <div class="card">
+    <h3>📋 How to get support</h3>
+    <ul>
+      <li><strong>Watch for the form.</strong> We'll send out a form to collect your questions, needs and requests — fill it out and we'll follow up.</li>
+      <li><strong>Email us instead.</strong> Prefer to reach out directly? Just email the address listed on the form and we'll take it from there.</li>
+      <li><strong>Ask for anything.</strong> Event selection, registration help, practice ideas, funding questions — whatever your chapter needs, we're here to help.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <h3>Two ways to reach us</h3>
+    <p><strong>1.</strong> Fill out the form when it comes your way. &nbsp;&nbsp;<strong>2.</strong> Email us at the address on the form. Either way works — pick whichever is easier for you.</p>
+  </div>
+</section>
+
+
+<section id="transportation">
+  <div class="section-head"><div><div class="kicker">Get students there</div><h2>Transportation plan for Middle School & High School chapters</h2></div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Build the transportation plan early</h3>
+      <p>Transportation can become a last-minute barrier to conference attendance. Chapters should confirm the conference schedule, attendee count, school/district transportation rules and adult supervision requirements before committing to travel arrangements.</p>
+      <div class="checklist">
+        <label><input type="checkbox"> <span><b>Confirm the conference.</b><br><span class="muted">Verify the current Middle School or High School conference dates, location and schedule.</span></span></label>
+        <label><input type="checkbox"> <span><b>Count travelers.</b><br><span class="muted">Finalize students, advisers/chaperones and any other approved travelers.</span></span></label>
+        <label><input type="checkbox"> <span><b>Check school/district transportation rules.</b><br><span class="muted">Ask the appropriate school office about buses, drivers, permission forms and approval timelines.</span></span></label>
+        <label><input type="checkbox"> <span><b>Plan the full trip.</b><br><span class="muted">Account for departure, arrival, conference movement, meals, lodging if applicable and return transportation.</span></span></label>
+        <label><input type="checkbox"> <span><b>Keep a backup plan.</b><br><span class="muted">Document who should be contacted if transportation changes or is delayed.</span></span></label>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Transportation checklist</h3>
+      <div class="budget-row"><span>Transportation provider / school vehicle</span><input type="text" placeholder="e.g., District bus"></div>
+      <div class="budget-row"><span>Departure location</span><input type="text" placeholder="School / approved location"></div>
+      <div class="budget-row"><span>Departure time</span><input type="text" placeholder="Confirm with school"></div>
+      <div class="budget-row"><span>Return plan</span><input type="text" placeholder="Bus / approved transportation"></div>
+      <div class="callout gold" style="margin-top:14px"><b>Important:</b> Transportation availability, permission requirements, driver rules and approval procedures are local. Verify the current requirements with your school or district before the trip.</div>
+    </div>
+  </div>
+</section>
+
+<section id="funding">
+  <div class="section-head"><div><div class="kicker">Make the trip possible</div><h2>Funding: separate the buckets</h2></div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Teach advisers to build a funding stack</h3>
+      <p>Don't treat “pay for States” as one giant problem. Break costs into categories, then identify the appropriate school/district and community funding sources.</p>
+      <div class="grid">
+        <div><span class="pill">Chapter events</span><p class="small">Local meetings, activities, speakers, small trips.</p></div>
+        <div><span class="pill">State travel</span><p class="small">Conference registration, transportation, lodging/meals where applicable.</p></div>
+        <div><span class="pill">Fundraisers</span><p class="small">Use approved school fundraising procedures and start early.</p></div>
+        <div><span class="pill">CTE / Perkins</span><p class="small">Ask your school's CTE administration what allowable student-organization expenses can be supported locally.</p></div>
+        <div><span class="pill">HEF / education funds</span><p class="small">Check district/school eligibility and current rules.</p></div>
+        <div><span class="pill">Sponsors</span><p class="small">Local businesses/community partners can sometimes support student participation.</p></div>
+      </div>
+      <div class="callout red" style="margin-top:14px"><b>Don't promise funding.</b> Funding eligibility, account codes, reimbursement rules and approval processes are local. Advisers should verify with their school/district before collecting or spending money.</div>
+    </div>
+    <div class="card">
+      <h3>Mini funding planner</h3>
+      <label class="field">Estimated total trip/competition cost</label>
+      <input id="cost" type="number" min="0" value="2500" oninput="calcFunding()">
+      <div class="budget-row"><span>Fundraiser target</span><input id="f1" type="number" min="0" value="800" oninput="calcFunding()"></div>
+      <div class="budget-row"><span>School / CTE source</span><input id="f2" type="number" min="0" value="900" oninput="calcFunding()"></div>
+      <div class="budget-row"><span>Community sponsors</span><input id="f3" type="number" min="0" value="500" oninput="calcFunding()"></div>
+      <div class="budget-row"><span>Family Contributions</span><input id="f4" type="number" min="0" value="300" oninput="calcFunding()"></div>
+      <hr>
+      <div class="money">Covered: $<span id="covered">2500</span></div>
+      <div class="result">$<span id="gap">0</span> remaining</div>
+      <p class="small muted">This is a planning calculator, not a statement that any source is allowable for a specific expense.</p>
+    </div>
+  </div>
+</section>
+
+<section id="activities">
+  <div class="section-head"><div><div class="kicker">Make students want to stay</div><h2>FBLA should be more than competition</h2></div></div>
+  <div class="grid">
+    <div class="card"><h3>🏢 Business field trips</h3><p>Visit a local business, bank, startup, nonprofit, media company or government office. End with a student reflection: “What skill did I see in action?”</p></div>
+    <div class="card"><h3>🎙️ Speaker series</h3><p>Invite alumni, entrepreneurs, executives, college students and community leaders. Ask them to bring one real problem for students to solve.</p></div>
+    <div class="card"><h3>💼 Career challenge</h3><p>Run a mini case competition, Shark Tank-style pitch, budgeting challenge or marketing sprint using age-appropriate scenarios.</p></div>
+    <div class="card"><h3>🤝 Chapter social</h3><p>Use low-cost team-building so new members develop friendships and feel ownership of the chapter.</p></div>
+    <div class="card"><h3>🏆 Recognition</h3><p>Celebrate improvement, practice consistency, leadership and service—not only winners.</p></div>
+    <div class="card"><h3>🌎 Service</h3><p>Connect community service to leadership development and let students plan and execute a project.</p></div>
+  </div>
+</section>
+
+<section id="meeting">
+  <div class="section-head"><div><div class="kicker">Chapter meeting builder</div><h2>What should happen at a meeting?</h2></div></div>
+  <div class="card">
+    <p class="muted">A strong meeting balances <b>business + skill-building + fun + ownership</b>. Use this as a plug-and-play 45-minute agenda.</p>
+    <div class="meeting"><input value="0–5 min"><input value="Welcome + quick win: recognize a member or ask a business icebreaker"></div>
+    <div class="meeting"><input value="5–10 min"><input value="FBLA update: deadlines, opportunities, upcoming events"></div>
+    <div class="meeting"><input value="10–25 min"><input value="Competitive-event skill sprint: practice one skill"></div>
+    <div class="meeting"><input value="25–35 min"><input value="Leadership activity: officers/member teams own a real task"></div>
+    <div class="meeting"><input value="35–42 min"><input value="Fun / speaker / challenge / team activity"></div>
+    <div class="meeting"><input value="42–45 min"><input value="Next action: every student leaves knowing one thing to do"></div>
+    <button class="btn" onclick="window.print()">Print this website</button>
+  </div>
+</section>
+
+<section id="action">
+  <div class="section-head"><div><div class="kicker">Workshop close</div><h2>Leave with a 30-day action plan</h2></div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>My chapter's next 3 moves</h3>
+      <label class="field">Move #1</label><input type="text" placeholder="e.g., Event sampler">
+      <label class="field">Move #2</label><input type="text" placeholder="e.g., Weekly prep block">
+      <label class="field">Move #3</label><input type="text" placeholder="e.g., Contact 3 speakers">
+      <div class="callout" style="margin-top:15px"><b>Success metric:</b> Don't only track “students registered.” Track how many students move from interested → practicing → competing → advancing.</div>
+    </div>
+    <div class="card">
+      <h3>Advisor self-check</h3>
+      <div class="checklist">
+        <label><input type="checkbox"> <span>I know where to find the current Middle School and High School event guidelines.</span></label>
+        <label><input type="checkbox"> <span>I can explain the FBLA Connect → Blue Panda workflow.</span></label>
+        <label><input type="checkbox"> <span>I have a plan to expose students to multiple event formats.</span></label>
+        <label><input type="checkbox"> <span>I know who at my school approves funding.</span></label>
+        <label><input type="checkbox"> <span>My officers have meaningful jobs at chapter meetings.</span></label>
+        <label><input type="checkbox"> <span>I have a deadline calendar with buffer time.</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="section-head"><div><div class="kicker">Official references</div><h2>Use these as the source of truth</h2></div></div>
+  <div class="source-list card">
+    <a href="https://www.fbla.org/ms-ce-26-27/" target="_blank">FBLA National — 2026–27 Middle School Competitive Events</a>
+    <a href="https://www.fbla.org/middle-school/competitive-events/" target="_blank">FBLA National — Middle School Competitive Events & resources</a>
+    <a href="https://www.fbla.org/hs-ce-26-27/" target="_blank">FBLA National — 2026–27 High School Competitive Events</a>
+    <a href="https://www.fbla.org/high-school/competitive-events/" target="_blank">FBLA National — High School Competitive Events & resources</a>
+    <a href="https://www.vafbla.org/conferences-and-meetings" target="_blank">Virginia FBLA — Conferences & Meetings</a>
+    <a href="https://www.vafbla.org/resources" target="_blank">Virginia FBLA — Resources / Middle School & High School SLC</a>
+    <a href="https://www.vafbla.org/fbla-high-school" target="_blank">Virginia FBLA — High School</a>
+    <a href="https://www.vafbla.org/fbla-middle" target="_blank">Virginia FBLA — Middle School</a>
+    <a href="https://www.vafbla.org/membership-and-dues" target="_blank">Virginia FBLA — Membership & Dues</a>
+    <a href="https://www.vafbla.org/recruitment-and-promotion" target="_blank">Virginia FBLA — Recruitment & Promotion</a>
+  </div>
+  <p class="small muted" style="margin-top:12px">Last checked for this lesson: September 11, 2026. This file intentionally avoids inventing 2026–27 Virginia SLC deadlines, fees or event-specific qualification rules that were not publicly posted in the sources checked.</p>
+</section>
+  <section id="download" style="text-align:center;margin-top:20px">
+    <div class="card">
+      <h2>Take the full lesson with you</h2>
+      <p class="muted">Download this whole website as an HTML file so the interactive lesson plan can be saved and opened later.</p>
+      <button class="btn gold" onclick="downloadWebsite()">Download this whole website</button>
+    </div>
+  </section>
+</main>
+
+<footer><div class="footer-inner">
+  <b>Road to FBLA States</b> • Middle School & High School Adviser Professional Development<br>
+  <span class="small">Prepared for Harsha Kohale • Student-led adviser PD concept • September 28</span>
+</div></footer>
+
+<script>
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function downloadWebsite(){
+  const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='FBLA_Road_to_States_Interactive_Lesson.html';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function tab(id,el){
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.parentElement.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+}
+const qs=[
+ {q:"A student is missing from the Blue Panda member dropdown. What is the safest next move?",a:["Manually type the student in anyway","Verify their FBLA Connect membership/data and allow time for syncing","Register them as a guest","Put them in the event and fix membership later"],c:1,e:"Correct. Virginia's guidance says students should be selected from the member list; if a student is missing, investigate membership/sync rather than manually creating the student."},
+ {q:"The Issues box is RED. What should you do?",a:["Submit immediately","Ignore it if the student is ready","Resolve the blocking issue before submission","Delete the entire registration"],c:2,e:"Correct. A red Issues status indicates a problem that prevents submission."},
+ {q:"What should drive event-specific preparation?",a:["Last year's event only","The current year's official guidelines and rating sheet","A random study guide","Whatever another school is doing"],c:1,e:"Correct. Current-year FBLA guidelines and rating sheets are the source of truth for event requirements."},
+ {q:"Which is the strongest chapter-meeting design?",a:["Announcements for 45 minutes","Only test practice","Business update + skill practice + leadership ownership + fun","Only fundraising"],c:2,e:"Correct. The goal is to build capable, motivated members—not just process paperwork."}
+];
+let qi=0,score=0,answered=false;
+function renderQuiz(){
+  const x=qs[qi]; answered=false;
+  document.getElementById('quizQ').textContent=(qi+1)+". "+x.q;
+  document.getElementById('answers').innerHTML=x.a.map((v,i)=>`<button class="answer" onclick="answerQuiz(${i})">${String.fromCharCode(65+i)}. ${v}</button>`).join('');
+  document.getElementById('feedback').textContent='';
+  document.getElementById('quizScore').textContent=`Scenario ${qi+1} of ${qs.length} • Score: ${score}`;
+}
+function answerQuiz(i){
+  if(answered)return; answered=true;
+  const x=qs[qi], btns=document.querySelectorAll('.answer');
+  btns[i].classList.add(i===x.c?'correct':'wrong');
+  if(i===x.c){score++;document.getElementById('feedback').textContent='✓ '+x.e}
+  else{btns[x.c].classList.add('correct');document.getElementById('feedback').textContent='Not quite. '+x.e}
+  document.getElementById('quizScore').textContent=`Scenario ${qi+1} of ${qs.length} • Score: ${score}`;
+}
+function nextQuiz(){qi=(qi+1)%qs.length;renderQuiz();}
+document.querySelectorAll('#prepList input').forEach(x=>x.addEventListener('change',()=>{
+  const n=document.querySelectorAll('#prepList input').length, done=document.querySelectorAll('#prepList input:checked').length;
+  document.getElementById('prepProgress').style.width=(done/n*100)+'%';
+  document.getElementById('prepPct').textContent=Math.round(done/n*100)+'% complete';
+}));
+function calcFunding(){
+  const cost=+document.getElementById('cost').value||0;
+  const sum=['f1','f2','f3','f4'].reduce((s,id)=>s+(+document.getElementById(id).value||0),0);
+  document.getElementById('covered').textContent=sum.toLocaleString();
+  document.getElementById('gap').textContent=Math.max(cost-sum,0).toLocaleString();
+}
+renderQuiz();calcFunding();
+</script>
+</body>
+</html>
